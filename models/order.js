@@ -15,9 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   Order.init({
     menuItemId: DataTypes.INTEGER,
-    userPhoneNumber: DataTypes.STRING
+    userPhoneNumber: DataTypes.STRING,
   }, {
     sequelize,
+    timestamps: false,
     modelName: 'Order',
   });
   return Order;

@@ -3,4 +3,8 @@ const router = express.Router();
 
 const Order = require('../controllers').order
 
-router.post("/order", Order.createOrder)
+// POST NEW ORDER
+router.post("/order", Order.createOrder);
+
+
+module.exports = router;
