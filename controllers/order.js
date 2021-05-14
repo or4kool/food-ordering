@@ -12,7 +12,7 @@ module.exports = {
         return Order.create({ menuItemId, userPhoneNumber })
             .then(result => {
                 const response = {
-                    status: 200,
+                    status: 201,
                     message: "ok",
                     data: result
                 }
@@ -20,10 +20,10 @@ module.exports = {
                 // SEND SMS TO NUMBER
                 sendSMS(userPhoneNumber);
 
-                res.status(200).send(response);
+                res.status(201).send(response);
             })
             .catch(err => {
-                res.status(401).send({ status: 400, message: err.message })
+                res.status(401).send({ status: 401, message: err.message })
             })
     }
 

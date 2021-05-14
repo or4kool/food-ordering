@@ -22,7 +22,7 @@ module.exports = {
                 res.status(201).send(response)
             })
             .catch(err => {
-                res.status(400).send({ status: 400, message: err.message })
+                res.status(401).send({ status: 400, message: err.message })
             })
     },
 
