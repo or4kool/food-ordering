@@ -14,7 +14,7 @@ module.exports = {
                 const response = {
                     status: 200,
                     message: "ok",
-                    data: [...result]
+                    data: result
                 }
 
                 res.status(200).send(response)
