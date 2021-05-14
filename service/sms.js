@@ -1,9 +1,16 @@
-const AfricasTalking = require('africastalking');
+const AfricasTalking = require('africastalking')({
+    apikey: process.env.SMS_KEY,
+    username: process.env.SMS_USERNAME
+});
 
 
+const sendSMS = async receiver => {
 
-const sendSMS = () => {
-
+    return AfricasTalking.SMS.send({
+        to: receiver,
+        message: "",
+        from: process.env.SMS_SENDER_ID
+    })
 }
 
 module.exports = sendSMS;

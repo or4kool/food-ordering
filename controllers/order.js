@@ -1,5 +1,5 @@
 const Order = require('../models').Order;
-const Menu = require('../models').Menu;
+const sendSMS = require('../service/sms');
 
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
     // CREATE NEW ORDER
     createOrder(req, res) {
 
-        const { menuItemId, userPhoneNumber } = req.body
+        const { menuItemId, userPhoneNumber } = req.body;
 
         return Order.create({ menuItemId, userPhoneNumber })
             .then(result => {
@@ -17,7 +17,10 @@ module.exports = {
                     data: result
                 }
 
-                res.status(200).send(response)
+                // SEND SMS TO NUMBER
+                sendSMS(userPhoneNumber);
+
+                res.status(200).send(response);
             })
             .catch(err => {
                 res.status(401).send({ status: 400, message: err.message })
