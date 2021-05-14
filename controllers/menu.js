@@ -8,23 +8,26 @@ module.exports = {
 
         const { name, price } = req.body
 
-        return Menu.createOrFind({ where: { name }, fields: { name, price } })
+        return Menu.findOrCreate({ where: { name }, defaults: { name, price } })
             .then(result => {
+                if (!result[1]) {
+                    return res.status(400).send({ status: 400, message: `${name} already exists` })
+                }
+
                 const response = {
                     status: 201,
                     message: "ok",
-                    data: { ...result }
+                    data: result[0]
                 }
                 res.status(201).send(response)
             })
             .catch(err => {
-                throw new error()
+                res.status(400).send({ status: 400, message: err.message })
             })
     },
 
     // GET MENU
     getMenu(req, res) {
-
         return Menu.findAll()
             .then(result => {
                 const response = {
@@ -36,7 +39,7 @@ module.exports = {
                 res.status(200).send(response)
             })
             .catch(err => {
-
+                res.status(400).send({ status: 400, message: err.message })
             })
     },
 

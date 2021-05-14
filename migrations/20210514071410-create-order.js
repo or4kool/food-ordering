@@ -9,7 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       menuItemId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Menus",
+          key: "id",
+          as: "menuItemId"
+        }
       },
       userPhoneNumber: {
         type: Sequelize.STRING
