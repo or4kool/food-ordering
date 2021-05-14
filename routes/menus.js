@@ -5,3 +5,6 @@ const Menu = require('../controllers').menu
 
 // CREATE MENU
 router.post("/menu", Menu.createMenu);
+
+
+module.exports = router;

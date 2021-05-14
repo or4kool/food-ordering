@@ -20,7 +20,24 @@ module.exports = {
             .catch(err => {
                 throw new error()
             })
+    },
 
+    // GET MENU
+    getMenu(req, res) {
+
+        return Menu.findAll()
+            .then(result => {
+                const response = {
+                    status: 200,
+                    message: "ok",
+                    data: [...result]
+                }
+
+                res.status(200).send(response)
+            })
+            .catch(err => {
+
+            })
     },
 
 }
